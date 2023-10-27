@@ -20,7 +20,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun App() {
   MaterialTheme {
-    var greetingText by remember { mutableStateOf("Hello, Compose iOS!") }
+    var greetingText by remember { mutableStateOf("Hello translator app!") }
     var showImage by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
       Button(onClick = {
