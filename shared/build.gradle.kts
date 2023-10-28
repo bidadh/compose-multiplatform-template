@@ -31,9 +31,9 @@ kotlin {
     val androidMain by getting {
       dependencies {
         implementation(compose.preview)
-        api("androidx.activity:activity-compose:1.7.2")
-        api("androidx.appcompat:appcompat:1.6.1")
-        api("androidx.core:core-ktx:1.10.1")
+        api(libs.activity.compose)
+        api(libs.appcompat)
+        api(libs.core.ktx)
       }
     }
     val iosX64Main by getting
