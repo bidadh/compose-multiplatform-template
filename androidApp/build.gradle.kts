@@ -13,9 +13,15 @@ kotlin {
     val androidMain by getting {
       dependencies {
         implementation(project(":shared"))
-//        implementation(libs.bundles.compose)
-//        implementation(libs.bundles.hilt)
-//        implementation(libs.activity.compose)
+        implementation(compose.ui)
+        implementation(compose.uiTooling)
+        implementation(compose.preview)
+        implementation(compose.foundation)
+        implementation(compose.material3)
+        implementation(compose.materialIconsExtended)
+        implementation(libs.coil.compose)
+        implementation(libs.compose.navigation)
+        implementation(libs.activity.compose)
       }
     }
   }

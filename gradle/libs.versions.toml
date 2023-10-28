@@ -113,14 +113,14 @@ compose = [
     "compose-ui",
     "compose-ui-tooling",
     "compose-ui-tooling-preview",
-#    "compose-material3",
+    "compose-material3",
     "compose-foundation",
     "compose-animation",
     "compose-runtime",
     "compose-runtime-livedata",
-#    "compose-runtime-rxjava3",
-#    "compose-material3-icons-core",
-#    "compose-material3-icons-extended",
+    "compose-runtime-rxjava3",
+    "compose-material3-icons-core",
+    "compose-material3-icons-extended",
     "compose-navigation",
     "coil-compose"
 ]
