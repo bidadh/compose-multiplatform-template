@@ -21,7 +21,7 @@ pluginManagement {
     kotlin("multiplatform").version(kotlinVersion)
     kotlin("android").version(kotlinVersion)
     kotlin("plugin.serialization").version(kotlinVersion)
-    id("kotlin-kapt").version(kotlinVersion)
+    kotlin("kapt").version(kotlinVersion)
 //    val hiltVersion = extra["hilt.version"] as String
 //    id("dagger.hilt.android.plugin").version(hiltVersion)
 
