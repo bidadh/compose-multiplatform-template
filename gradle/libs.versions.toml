@@ -1,15 +1,18 @@
 [versions]
+activityVersion = "1.5.3"
 kotlin = "1.9.10"
 gradle = "8.3"
 agp = "8.2.0-rc01"
 compose = "1.5.3"
-activityCompose = "1.8.0"
+activityCompose = "1.5.3"
 appcompat = "1.6.1"
 coreKtx = "1.10.1"
 composeNavigationVersion = "2.7.4"
 coilComposeVersion = "2.1.0"
 dateTimeVersion = "0.4.0"
 hiltVersion = "2.48.1"
+hiltWorkVersion = "1.0.0"
+workRuntimeKtxVersion = "2.8.1"
 hiltCompilerVersion = "1.0.0"
 ktorVersion = "2.3.0"
 sqlDelightGradleVersion = "1.5.5"
@@ -22,9 +25,12 @@ junit4 = "4.13.2"
 assertJ = "3.24.2"
 mockito = "5.6.0"
 testRunnerVersion = "1.5.2"
+activity="1.8.0"
 
 [libraries]
+activity = { module = "androidx.activity:activity", version.ref = "activity" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+activity-v153 = { module = "androidx.activity:activity", version.ref = "activityVersion" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
@@ -40,6 +46,8 @@ compose-navigation = { module = "androidx.navigation:navigation-compose", versio
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
 kotlin-dateTime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTimeVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hiltWorkVersion" }
+work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtxVersion" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompilerVersion" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompilerVersion" }
@@ -82,7 +90,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-dagger-hilt = { id = "dagger.hilt.android.plugin", version.ref = "hiltVersion" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelightGradleVersion" }
 

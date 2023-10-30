@@ -3,7 +3,7 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.jetbrains.compose)
   alias(libs.plugins.kotlin.kapt)
-//  alias(libs.plugins.dagger.hilt)
+  alias(libs.plugins.dagger.hilt)
   alias(libs.plugins.kotlin.plugin.serialization)
 }
 
@@ -12,16 +12,6 @@ kotlin {
   sourceSets {
     val androidMain by getting {
       dependencies {
-        implementation(project(":shared"))
-        implementation(compose.ui)
-        implementation(compose.uiTooling)
-        implementation(compose.preview)
-        implementation(compose.foundation)
-        implementation(compose.material3)
-        implementation(compose.materialIconsExtended)
-        implementation(libs.coil.compose)
-        implementation(libs.compose.navigation)
-        implementation(libs.activity.compose)
       }
     }
   }
@@ -47,4 +37,25 @@ android {
   kotlin {
     jvmToolchain(17)
   }
+}
+
+dependencies {
+  implementation(project(":shared"))
+  implementation(compose.ui)
+  implementation(compose.uiTooling)
+  implementation(compose.preview)
+  implementation(compose.foundation)
+  implementation(compose.material3)
+  implementation(compose.materialIconsExtended)
+  implementation(libs.coil.compose)
+  implementation(libs.compose.navigation)
+  implementation(libs.activity.compose)
+  implementation(libs.activity)
+  implementation(libs.ktor.android)
+  implementation(libs.hilt.android)
+  myKapt(libs.hilt.android.compiler)
+  implementation(libs.hilt.work)
+  myKapt(libs.hilt.compiler)
+  implementation(libs.work.runtime.ktx)
+  implementation(libs.hilt.navigation.compose)
 }
