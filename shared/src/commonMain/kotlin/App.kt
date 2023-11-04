@@ -15,18 +15,28 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.myapplication.appModule
+import com.myapplication.service.GreetingService
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.KoinApplication
+import org.koin.compose.koinInject
 import ui.theme.AppTheme
 
 @Composable
 fun App() {
-  AppTheme {
-    Surface(
-      modifier = Modifier.fillMaxSize(),
-      color = MaterialTheme.colorScheme.background
-    ) {
-      RootScreen()
+  KoinApplication(
+    application = {
+      modules(appModule())
+    }
+  ) {
+    AppTheme {
+      Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+      ) {
+        RootScreen()
+      }
     }
   }
 }
@@ -34,11 +44,13 @@ fun App() {
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun RootScreen() {
+  val service = koinInject<GreetingService>()
+
   var greetingText by remember { mutableStateOf("Hello translator app!") }
   var showImage by remember { mutableStateOf(false) }
   Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
     Button(onClick = {
-      greetingText = "Hello, ${getPlatformName()}"
+      greetingText = "Compose ios on ${service.greeting()}"
       showImage = !showImage
     }) {
       Text(greetingText)

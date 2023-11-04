@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
 plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.android.library)
   alias(libs.plugins.jetbrains.compose)
   alias(libs.plugins.sqldelight)
   alias(libs.plugins.kotlin.plugin.serialization)
+  alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -22,6 +25,7 @@ kotlin {
 
   sourceSets {
     val commonMain by getting {
+      kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
       dependencies {
         implementation(compose.runtime)
         implementation(compose.foundation)
@@ -35,6 +39,11 @@ kotlin {
         implementation(libs.sql.delight.runtime)
         implementation(libs.sql.delight.coroutines.extensions)
         implementation(libs.kotlin.dateTime)
+
+        api(libs.koin.core)
+        api(libs.koin.compose)
+        api(libs.koin.test)
+        api(libs.koin.annotations)
       }
     }
 
@@ -100,5 +109,23 @@ android {
   }
   kotlin {
     jvmToolchain(17)
+  }
+}
+
+dependencies {
+  add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+}
+tasks.withType<KotlinCompile<*>>().configureEach {
+  if (name != "kspCommonMainKotlinMetadata") {
+    dependsOn("kspCommonMainKotlinMetadata")
+  }
+}
+afterEvaluate {
+  val taskList = tasks.filter {
+    it.name.contains("SourcesJar", true)
+  }
+  taskList.forEach {
+    println("SourceJarTask====>${it.name}")
+    it.dependsOn("kspCommonMainKotlinMetadata")
   }
 }

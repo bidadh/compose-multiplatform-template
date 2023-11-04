@@ -5,6 +5,7 @@ plugins {
   alias(libs.plugins.kotlin.kapt)
   alias(libs.plugins.dagger.hilt)
   alias(libs.plugins.kotlin.plugin.serialization)
+  alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -34,6 +35,14 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
+  applicationVariants.all {
+    val variantName = name
+    sourceSets {
+      getByName("main") {
+        java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+      }
+    }
+  }
   kotlin {
     jvmToolchain(17)
   }
@@ -58,4 +67,10 @@ dependencies {
   myKapt(libs.hilt.compiler)
   implementation(libs.work.runtime.ktx)
   implementation(libs.hilt.navigation.compose)
+
+  implementation(libs.koin.core)
+  implementation(libs.koin.android)
+  implementation(libs.koin.compose)
+  implementation(libs.koin.annotations)
+  ksp(libs.koin.ksp.compiler)
 }
