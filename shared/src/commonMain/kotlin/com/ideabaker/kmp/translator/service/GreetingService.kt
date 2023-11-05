@@ -1,6 +1,6 @@
-package com.myapplication.service
+package com.ideabaker.kmp.translator.service
 
-import getPlatformName
+import com.ideabaker.kmp.translator.getPlatformName
 import org.koin.core.annotation.Single
 
 @Single

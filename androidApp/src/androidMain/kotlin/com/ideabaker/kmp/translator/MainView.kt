@@ -1,6 +1,5 @@
-package com.myapplication
+package com.ideabaker.kmp.translator
 
-import App
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 

@@ -96,7 +96,7 @@ kotlin {
 
 android {
   compileSdk = libs.versions.android.compileSdk.get().toInt()
-  namespace = "com.myapplication.common"
+  namespace = "com.ideabaker.kmp.translator.common"
 
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
   sourceSets["main"].res.srcDirs("src/androidMain/res")

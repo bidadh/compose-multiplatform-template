@@ -20,12 +20,12 @@ kotlin {
 
 android {
   compileSdk = libs.versions.android.compileSdk.get().toInt()
-  namespace = "com.myapplication"
+  namespace = "com.ideabaker.kmp.translator"
 
   sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
   defaultConfig {
-    applicationId = "com.myapplication.MyApplication"
+    applicationId = "com.ideabaker.kmp.translator.TranslatorApp"
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
     versionCode = 1

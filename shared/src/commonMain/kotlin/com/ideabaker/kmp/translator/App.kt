@@ -1,3 +1,5 @@
+package com.ideabaker.kmp.translator
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -15,13 +17,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.myapplication.appModule
-import com.myapplication.service.GreetingService
+import com.ideabaker.kmp.translator.service.GreetingService
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
-import ui.theme.AppTheme
+import com.ideabaker.kmp.translator.ui.theme.AppTheme
 
 @Composable
 fun App() {

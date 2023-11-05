@@ -1,4 +1,4 @@
-package ui.theme
+package com.ideabaker.kmp.translator.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF456812)

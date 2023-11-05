@@ -1,4 +1,4 @@
-package com.myapplication
+package com.ideabaker.kmp.translator
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
