@@ -65,5 +65,3 @@ fun RootScreen() {
     }
   }
 }
-
-expect fun getPlatformName(): String
