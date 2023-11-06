@@ -17,8 +17,8 @@ hiltWorkVersion = "1.0.0"
 workRuntimeKtxVersion = "2.8.1"
 hiltCompilerVersion = "1.0.0"
 ktorVersion = "2.3.0"
-sqlDelightGradleVersion = "1.5.5"
-sqlDelightVersion = "1.5.5"
+sqlDelightGradleVersion = "2.0.0"
+sqlDelightVersion = "2.0.0"
 ## Tests
 assertKVersion = "0.25"
 turbineVersion = "0.7.0"
@@ -70,11 +70,12 @@ appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat"
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 android-build-tool = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-sql-delight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqlDelightGradleVersion" }
-sql-delight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelightVersion" }
-sql-delight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
-sql-delight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
-sql-delight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelightVersion" }
+sql-delight-gradle-plugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqlDelightGradleVersion" }
+sql-delight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelightVersion" }
+sql-delight-dialect = { module = "app.cash.sqldelight:sqlite-3-38-dialect", version.ref = "sqlDelightVersion" }
+sql-delight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
+sql-delight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
+sql-delight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelightVersion" }
 
 ## Tests
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
@@ -114,7 +115,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelightGradleVersion" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightGradleVersion" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 
 [bundles]

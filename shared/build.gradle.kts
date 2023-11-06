@@ -26,6 +26,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+      kotlin.srcDir("build/generated/sqldelight/code/TranslatorDatabase/commonMain")
       dependencies {
         implementation(compose.runtime)
         implementation(compose.foundation)
@@ -129,5 +130,15 @@ afterEvaluate {
   taskList.forEach {
     println("SourceJarTask====>${it.name}")
     it.dependsOn("kspCommonMainKotlinMetadata")
+  }
+}
+
+sqldelight {
+  databases {
+    create("TranslateDatabase") {
+      packageName.set("com.ideabaker.kmp.translator.database")
+      srcDirs.setFrom("src/commonMain/sqldelight")
+      dialect(libs.sql.delight.dialect)
+    }
   }
 }
