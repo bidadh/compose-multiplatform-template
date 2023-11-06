@@ -23,6 +23,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
 import com.ideabaker.kmp.translator.ui.theme.AppTheme
+import moe.tlaster.precompose.PreComposeApp
 
 @Composable
 fun App() {
@@ -31,12 +32,14 @@ fun App() {
       modules(appModule())
     }
   ) {
-    AppTheme {
-      Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-      ) {
-        RootScreen()
+    PreComposeApp {
+      AppTheme {
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colorScheme.background
+        ) {
+          RootScreen()
+        }
       }
     }
   }

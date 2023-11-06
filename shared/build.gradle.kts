@@ -39,6 +39,7 @@ kotlin {
         implementation(libs.kotlin.dateTime)
 
         api(libs.bundles.koinApi)
+        api(libs.bundles.precompose)
       }
     }
 
