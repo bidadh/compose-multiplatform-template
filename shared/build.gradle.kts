@@ -34,17 +34,11 @@ kotlin {
         @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
         implementation(compose.components.resources)
 
-        implementation(libs.ktor.core)
-        implementation(libs.ktor.serialization)
-        implementation(libs.ktor.serialization.json)
-        implementation(libs.sql.delight.runtime)
-        implementation(libs.sql.delight.coroutines.extensions)
+        implementation(libs.bundles.ktor)
+        implementation(libs.bundles.sqlDelight)
         implementation(libs.kotlin.dateTime)
 
-        api(libs.koin.core)
-        api(libs.koin.compose)
-        api(libs.koin.test)
-        api(libs.koin.annotations)
+        api(libs.bundles.koinApi)
       }
     }
 
@@ -65,7 +59,7 @@ kotlin {
         api(libs.appcompat)
         api(libs.core.ktx)
         implementation(libs.ktor.android)
-        implementation(libs.sql.delight.android.driver)
+        implementation(libs.sqlDelight.android.driver)
       }
     }
     val iosX64Main by getting
@@ -79,7 +73,7 @@ kotlin {
 
       dependencies {
         implementation(libs.ktor.ios)
-        implementation(libs.sql.delight.native.driver)
+        implementation(libs.sqlDelight.native.driver)
       }
     }
 

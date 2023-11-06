@@ -2,8 +2,6 @@ plugins {
   alias(libs.plugins.kotlin.multiplatform)
   alias(libs.plugins.android.application)
   alias(libs.plugins.jetbrains.compose)
-  alias(libs.plugins.kotlin.kapt)
-  alias(libs.plugins.dagger.hilt)
   alias(libs.plugins.kotlin.plugin.serialization)
   alias(libs.plugins.ksp)
 }
@@ -56,21 +54,12 @@ dependencies {
   implementation(compose.foundation)
   implementation(compose.material3)
   implementation(compose.materialIconsExtended)
-  implementation(libs.coil.compose)
-  implementation(libs.compose.navigation)
-  implementation(libs.activity.compose)
-  implementation(libs.activity)
-  implementation(libs.ktor.android)
-  implementation(libs.hilt.android)
-  myKapt(libs.hilt.android.compiler)
-  implementation(libs.hilt.work)
-  myKapt(libs.hilt.compiler)
-  implementation(libs.work.runtime.ktx)
-  implementation(libs.hilt.navigation.compose)
 
-  implementation(libs.koin.core)
-  implementation(libs.koin.android)
-  implementation(libs.koin.compose)
-  implementation(libs.koin.annotations)
+  implementation(libs.bundles.composeX)
+
+  implementation(libs.ktor.android)
+  implementation(libs.work.runtime.ktx)
+
+  implementation(libs.bundles.koin)
   ksp(libs.koin.ksp.compiler)
 }
