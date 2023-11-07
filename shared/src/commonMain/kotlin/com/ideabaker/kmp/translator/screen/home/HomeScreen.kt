@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.home
+package com.ideabaker.kmp.translator.screen.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -16,15 +16,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun HomeScreen() {
-  val viewModel = koinViewModel(HomeViewModel::class)
-
+fun HomeScreen(viewModel: HomeViewModel) {
   var greetingText by remember { mutableStateOf("Hello translator app!") }
   var showImage by remember { mutableStateOf(false) }
 

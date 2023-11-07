@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.home
+package com.ideabaker.kmp.translator.screen.home
 
 data class HomeUIState(
   val greeting: String = "Hello translator app!"

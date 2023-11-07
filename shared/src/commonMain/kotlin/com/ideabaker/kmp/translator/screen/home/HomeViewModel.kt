@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.home
+package com.ideabaker.kmp.translator.screen.home
 
 import com.ideabaker.kmp.translator.service.GreetingService
 import kotlinx.coroutines.flow.MutableStateFlow

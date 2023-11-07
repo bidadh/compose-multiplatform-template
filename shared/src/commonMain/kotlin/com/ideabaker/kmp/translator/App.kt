@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.ideabaker.kmp.translator.home.HomeScreen
+import com.ideabaker.kmp.translator.screen.Nav
 import com.ideabaker.kmp.translator.ui.theme.AppTheme
 import moe.tlaster.precompose.PreComposeApp
 import org.koin.compose.KoinApplication
@@ -24,7 +24,7 @@ fun App() {
           modifier = Modifier.fillMaxSize(),
           color = MaterialTheme.colorScheme.background
         ) {
-          HomeScreen()
+          Nav()
         }
       }
     }
