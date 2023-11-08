@@ -11,7 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
+import org.koin.core.annotation.Single
 
+@Single
 class SqlDelightHistoryDataSource(
   db: TranslateDatabase
 ): HistoryDataSource {

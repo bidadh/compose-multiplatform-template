@@ -4,7 +4,9 @@ import com.ideabaker.kmp.translator.core.domain.language.Language
 import com.ideabaker.kmp.translator.core.domain.util.Resource
 import com.ideabaker.kmp.translator.translate.domain.history.HistoryDataSource
 import com.ideabaker.kmp.translator.translate.domain.history.HistoryItem
+import org.koin.core.annotation.Single
 
+@Single
 class Translate(
   private val client: TranslateClient,
   private val historyDataSource: HistoryDataSource

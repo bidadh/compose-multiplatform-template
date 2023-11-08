@@ -8,24 +8,16 @@ import androidx.compose.ui.Modifier
 import com.ideabaker.kmp.translator.screen.Nav
 import com.ideabaker.kmp.translator.ui.theme.AppTheme
 import moe.tlaster.precompose.PreComposeApp
-import org.koin.compose.KoinApplication
 
 @Composable
 fun App() {
-  KoinApplication(
-    application = {
-      modules(appModule())
-      printLogger()
-    }
-  ) {
-    PreComposeApp {
-      AppTheme {
-        Surface(
-          modifier = Modifier.fillMaxSize(),
-          color = MaterialTheme.colorScheme.background
-        ) {
-          Nav()
-        }
+  PreComposeApp {
+    AppTheme {
+      Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+      ) {
+        Nav()
       }
     }
   }

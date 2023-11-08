@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      MainView()
+      MainView(initKoin())
     }
   }
 }
