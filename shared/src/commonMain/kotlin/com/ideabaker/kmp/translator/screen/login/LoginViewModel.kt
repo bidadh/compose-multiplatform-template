@@ -1,5 +1,6 @@
 package com.ideabaker.kmp.translator.screen.login
 
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -8,12 +9,14 @@ import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel(
+  private val log: Logger
+): ViewModel() {
   private val _uiState = MutableStateFlow(LoginUIState())
   val uiState = _uiState.asStateFlow()
 
   fun login(onSuccess: () -> Unit) = viewModelScope.launch {
-
+    log.i { "Logging in..." }
     _uiState.update {
       it.copy(isLoading = true)
     }
