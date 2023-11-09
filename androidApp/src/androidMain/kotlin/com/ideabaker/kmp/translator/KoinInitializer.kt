@@ -2,14 +2,11 @@ package com.ideabaker.kmp.translator
 
 import android.content.Context
 import android.content.SharedPreferences
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.KoinApplication
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-fun MainActivity.initKoin(
-  onStart: () -> Unit
-): KoinApplication.() -> Unit {
+fun MainActivity.initKoin(onStart: () -> Unit): KoinAppDeclaration {
   val androidModule = module {
     single<Context> { this@initKoin } bind Context::class
     single<SharedPreferences> {
@@ -19,14 +16,7 @@ fun MainActivity.initKoin(
       onStart
     }
   }
-  val koinAppInitializer: KoinApplication.() -> Unit = {
-    androidLogger()
-    printLogger()
-    modules(appModule(androidModule))
 
-    val doOnStartup = koin.get<() -> Unit>()
-    doOnStartup.invoke()
-  }
-
-  return koinAppInitializer
+  //TODO: add androidLogger()
+  return customizeKoinApplication(androidModule)
 }
