@@ -38,6 +38,8 @@ kotlin {
         implementation(libs.bundles.sqlDelight)
         implementation(libs.kotlin.dateTime)
 
+        implementation(libs.kermit.logging)
+
         api(libs.bundles.koinApi)
         api(libs.bundles.precompose)
       }
