@@ -33,14 +33,14 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-  applicationVariants.all {
-    val variantName = name
-    sourceSets {
-      getByName("main") {
-        java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
-      }
-    }
-  }
+//  applicationVariants.all {
+//    val variantName = name
+//    sourceSets {
+//      getByName("main") {
+//        java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+//      }
+//    }
+//  }
   kotlin {
     jvmToolchain(17)
   }
