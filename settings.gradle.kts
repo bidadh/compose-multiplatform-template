@@ -1,7 +1,7 @@
 rootProject.name = "translator-kmm-compose-app"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":androidApp")
+include(":composeApp")
 
 pluginManagement {
   repositories {
