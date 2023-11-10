@@ -1,7 +1,7 @@
 package com.ideabaker.kmp.translator.core.presentation
 
 import androidx.annotation.DrawableRes
-import com.ideabaker.kmp.translator.common.R
+import com.ideabaker.kmp.translator.R
 import com.ideabaker.kmp.translator.core.domain.language.Language
 import java.util.Locale
 
