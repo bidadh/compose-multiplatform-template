@@ -1,3 +1,4 @@
+import dev.icerock.gradle.MRVisibility
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 
@@ -8,6 +9,7 @@ plugins {
   alias(libs.plugins.sqldelight)
   alias(libs.plugins.kotlinSerialization)
   alias(libs.plugins.ksp)
+  alias(moko.plugins.resources)
 }
 
 kotlin {
@@ -65,6 +67,7 @@ kotlin {
       implementation(libs.bundles.ktor)
       implementation(libs.bundles.sqlDelight)
       implementation(libs.kotlin.dateTime)
+      api(moko.bundles.resources)
 
       implementation(libs.kermit.logging)
 
@@ -76,6 +79,13 @@ kotlin {
       implementation(libs.sqlDelight.native.driver)
     }
   }
+}
+
+multiplatformResources {
+  multiplatformResourcesPackage = "com.ideabaker.kmm.translator.shared" // required
+  multiplatformResourcesClassName = "CMP" // optional, default MR
+  multiplatformResourcesVisibility = MRVisibility.Internal // optional, default Public
+  disableStaticFrameworkWarning = true // optional, default false
 }
 
 android {
