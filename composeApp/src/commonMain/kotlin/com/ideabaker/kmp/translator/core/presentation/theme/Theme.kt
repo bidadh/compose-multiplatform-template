@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.ui.theme
+package com.ideabaker.kmp.translator.core.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
