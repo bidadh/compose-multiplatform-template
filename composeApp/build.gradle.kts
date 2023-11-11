@@ -82,9 +82,13 @@ android {
   compileSdk = libs.versions.android.compileSdk.get().toInt()
   namespace = "com.ideabaker.kmp.translator"
 
-  sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-  sourceSets["main"].res.srcDirs("src/androidMain/res")
-  sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+  sourceSets {
+    named("main") {
+      manifest.srcFile("src/androidMain/AndroidManifest.xml")
+      res.srcDirs("src/main/res", "src/androidMain/res", "src/commonMain/resources")
+      resources.srcDirs("src/commonMain/resources")
+    }
+  }
 
   defaultConfig {
     applicationId = "com.ideabaker.kmp.translator.TranslatorApp"
