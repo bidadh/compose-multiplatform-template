@@ -38,7 +38,7 @@ fun HomeScreen(viewModel: HomeViewModel, onNavigate: (Routes) -> Unit) {
     TextField(value = viewModel.uiState.value.greeting, onValueChange = { viewModel.update(it) })
     AnimatedVisibility(viewModel.uiState.value.showImage) {
       Image(
-        painterResource("compose-multiplatform.xml"),
+        painterResource("drawable/compose_multiplatform.xml"),
         null
       )
       onNavigate.invoke(Routes.Login)

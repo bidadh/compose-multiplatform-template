@@ -85,7 +85,7 @@ android {
   sourceSets {
     named("main") {
       manifest.srcFile("src/androidMain/AndroidManifest.xml")
-      res.srcDirs("src/main/res", "src/androidMain/res", "src/commonMain/resources")
+      res.srcDirs("src/androidMain/res", "src/commonMain/resources")
       resources.srcDirs("src/commonMain/resources")
     }
   }
