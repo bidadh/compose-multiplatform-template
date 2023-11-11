@@ -1,0 +1,1 @@
+This repo is a modified version of the [Course](https://elopage.com/payer/s/philipplackner/courses/kmm-course) and migrated to the latest changes from the [KMP](https://kmp/jetbrains.com) 
