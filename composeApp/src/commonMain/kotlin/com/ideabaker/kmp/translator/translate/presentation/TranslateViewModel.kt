@@ -28,7 +28,7 @@ class TranslateViewModel(
   private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
   private val _uiState = MutableStateFlow(TranslateState())
 
-  private val state = combine(_uiState, historyDataSource.getHistory()) { state, history ->
+  val state = combine(_uiState, historyDataSource.getHistory()) { state, history ->
     combineWithHistory(state, history)
   }
     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranslateState())

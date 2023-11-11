@@ -21,7 +21,7 @@ class LoginViewModel(
       it.copy(isLoading = true)
     }
 
-    delay(2000)
+    delay(500)
     onSuccess()
   }
 

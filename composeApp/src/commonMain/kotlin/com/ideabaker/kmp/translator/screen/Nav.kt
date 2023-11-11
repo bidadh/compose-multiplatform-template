@@ -1,11 +1,15 @@
 package com.ideabaker.kmp.translator.screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.ideabaker.kmp.translator.screen.home.HomeScreen
 import com.ideabaker.kmp.translator.screen.home.HomeViewModel
 import com.ideabaker.kmp.translator.screen.login.LoginScreen
 import com.ideabaker.kmp.translator.screen.login.LoginViewModel
 import com.ideabaker.kmp.translator.screen.pin.PinScreen
+import com.ideabaker.kmp.translator.translate.presentation.TranslateScreen
+import com.ideabaker.kmp.translator.translate.presentation.TranslateViewModel
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
@@ -35,7 +39,7 @@ fun Nav() {
     ) {
       val viewModel = koinViewModel(LoginViewModel::class)
       LoginScreen(viewModel) {
-        navigator.navigate(Routes.Pin.route)
+        navigator.navigate(Routes.Translate.route)
       }
     }
 
@@ -46,6 +50,15 @@ fun Nav() {
       PinScreen {
         navigator.navigate(Routes.Login.route)
       }
+    }
+
+    scene(
+      route = Routes.Translate.route,
+      navTransition = NavTransition(),
+    ) {
+      val viewModel = koinViewModel(TranslateViewModel::class)
+      val state by viewModel.state.collectAsState()
+      TranslateScreen(state, viewModel::onEvent)
     }
   }
 }

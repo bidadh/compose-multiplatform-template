@@ -38,11 +38,11 @@ val viewModelsModule = module {
 expect val platformModule: Module
 
 val httpModule = module {
-  factory { HttpClientFactory().create() }
+  single { HttpClientFactory().create() }
 }
 
 val databaseModule = module {
-  factory { TranslateDatabase.invoke(get()) }
+  single { TranslateDatabase.invoke(get()) }
 }
 
 val annotatedModule = AppModule().module
