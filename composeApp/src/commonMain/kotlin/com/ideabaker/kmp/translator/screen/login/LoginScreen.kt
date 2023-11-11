@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,8 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
@@ -36,9 +33,11 @@ import com.ideabaker.kmp.translator.screen.Routes
 
 @Composable
 fun LoginScreen(
-  viewModel: LoginViewModel,
+  state: LoginState,
+  onEvent: (LoginEvent) -> Unit,
   onNavigate: (Routes) -> Unit
 ) {
+/*
   Box(modifier = Modifier.fillMaxSize()) {
     ClickableText(
       text = AnnotatedString("Sign up here"),
@@ -54,37 +53,34 @@ fun LoginScreen(
       )
     )
   }
+*/
   Column(
     modifier = Modifier.padding(20.dp),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
-    val uiState by viewModel.uiState.collectAsState()
-
-    Text(text = "Login", style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive))
+    Text(text = "Login", style = TextStyle(fontSize = 40.sp))
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
       label = { Text(text = "Username") },
-      value = uiState.username,
-      onValueChange = { viewModel.username(it) })
+      value = state.username,
+      onValueChange = { onEvent(LoginEvent.UsernameChanged(it)) })
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
       label = { Text(text = "Password") },
-      value = uiState.password,
+      value = state.password,
       visualTransformation = PasswordVisualTransformation(),
       keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-      onValueChange = { viewModel.password(it) })
+      onValueChange = { onEvent(LoginEvent.PasswordChanged(it)) })
 
     Spacer(modifier = Modifier.height(20.dp))
     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
       Button(
         onClick = {
-          viewModel.login {
-            onNavigate(Routes.Home)
-          }
+          onEvent(LoginEvent.Login { onNavigate(Routes.Translate) })
         },
         shape = RoundedCornerShape(50.dp),
         modifier = Modifier
@@ -106,9 +102,25 @@ fun LoginScreen(
         color = MaterialTheme.colorScheme.primary
       )
     )
+    if(state.error != null) {
+      val message = if(state.error == LoginError.USERNAME_EMPTY) {
+        "Username is empty"
+      } else {
+        "Password is empty"
+      }
+      Spacer(modifier = Modifier.height(20.dp))
+      Text(
+        text = message,
+        style = TextStyle(
+          fontSize = 14.sp,
+          fontFamily = FontFamily.Default,
+          color = MaterialTheme.colorScheme.error
+        )
+      )
+    }
 
     this@Column.AnimatedVisibility(
-      uiState.isLoading,
+      state.isLoading,
       enter = fadeIn(),
       exit = fadeOut()
     ) {

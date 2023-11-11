@@ -1,6 +1,7 @@
 package com.ideabaker.kmp.translator.screen.login
 
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,29 +12,75 @@ import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class LoginViewModel(
   private val log: Logger
-): ViewModel() {
-  private val _uiState = MutableStateFlow(LoginUIState())
-  val uiState = _uiState.asStateFlow()
+) : ViewModel() {
+  private var loginJob: Job? = null
 
-  fun login(onSuccess: () -> Unit) = viewModelScope.launch {
+  private val _uiState = MutableStateFlow(LoginState())
+  val state = _uiState.asStateFlow()
+
+  fun onEvent(event: LoginEvent) {
+    when (event) {
+      is LoginEvent.Login -> {
+        loginJob?.cancel()
+        login(_uiState.value, event.onSuccess)
+      }
+
+      is LoginEvent.OnErrorSeen -> {
+        _uiState.update {
+          it.copy(error = null)
+        }
+      }
+
+      is LoginEvent.PasswordChanged -> {
+        _uiState.update {
+          it.copy(password = event.password)
+        }
+      }
+
+      is LoginEvent.UsernameChanged -> {
+        _uiState.update {
+          it.copy(username = event.username)
+        }
+      }
+    }
+  }
+
+  fun login(state: LoginState, onSuccess: () -> Unit) {
+    if (state.isLoading) {
+      return
+    }
+
+    if (state.username.isEmpty()) {
+      _uiState.update {
+        it.copy(error = LoginError.USERNAME_EMPTY)
+      }
+      return
+    }
+
+    if (state.password.isEmpty()) {
+      _uiState.update {
+        it.copy(error = LoginError.PASSWORD_EMPTY)
+      }
+      return
+    }
+
+
+
     log.i { "Logging in..." }
-    _uiState.update {
-      it.copy(isLoading = true)
-    }
+    loginJob = viewModelScope.launch {
+      _uiState.update {
+        it.copy(
+          isLoading = true,
+          error = null
+        )
+      }
 
-    delay(500)
-    onSuccess()
-  }
+      delay(500)
+      _uiState.update {
+        it.copy(isLoading = false)
+      }
 
-  fun username(value: String) = viewModelScope.launch {
-    _uiState.update {
-      it.copy(username = value)
-    }
-  }
-
-  fun password(value: String) = viewModelScope.launch {
-    _uiState.update {
-      it.copy(password = value)
+      onSuccess()
     }
   }
 }

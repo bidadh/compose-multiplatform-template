@@ -38,7 +38,8 @@ fun Nav() {
       navTransition = NavTransition(),
     ) {
       val viewModel = koinViewModel(LoginViewModel::class)
-      LoginScreen(viewModel) {
+      val state by viewModel.state.collectAsState()
+      LoginScreen(state, viewModel::onEvent) {
         navigator.navigate(Routes.Translate.route)
       }
     }
