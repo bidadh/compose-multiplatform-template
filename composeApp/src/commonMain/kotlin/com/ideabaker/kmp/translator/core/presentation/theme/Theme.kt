@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import com.ideabaker.kmp.translator.core.presentation.theme.color.BlueColorTheme
+import com.ideabaker.kmp.translator.core.presentation.theme.color.ColorTheme
 
 
 val colorTheme: ColorTheme = BlueColorTheme

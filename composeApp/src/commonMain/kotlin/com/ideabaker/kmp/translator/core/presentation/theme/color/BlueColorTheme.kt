@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.ideabaker.kmp.translator.core.presentation.theme
+package com.ideabaker.kmp.translator.core.presentation.theme.color
 
 import androidx.compose.ui.graphics.Color
 
