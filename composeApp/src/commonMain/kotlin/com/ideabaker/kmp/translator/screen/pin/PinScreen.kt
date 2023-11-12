@@ -15,7 +15,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ideabaker.kmm.translator.shared.MR
 import com.ideabaker.kmp.translator.screen.Routes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun PinScreen(onNavigate: (Routes) -> Unit) {
@@ -27,7 +29,7 @@ fun PinScreen(onNavigate: (Routes) -> Unit) {
       .padding(20.dp)
   ) {
     ClickableText(
-      text = AnnotatedString("Go back to login"),
+      text = AnnotatedString(stringResource(MR.strings.back_to_login)),
       onClick = { onNavigate(Routes.Login) },
       style = TextStyle(
         fontSize = 24.sp,

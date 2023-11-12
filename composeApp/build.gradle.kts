@@ -29,6 +29,8 @@ kotlin {
     iosTarget.binaries.framework {
       baseName = "ComposeApp"
       isStatic = true
+      export(moko.resources)
+      export(moko.graphics)
     }
   }
 
@@ -52,6 +54,7 @@ kotlin {
       implementation(libs.sqlDelight.android.driver)
     }
     commonMain {
+      // this is required to make ksp classes / modules work in commonMain
       kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
     }
     commonMain.dependencies {
@@ -78,12 +81,29 @@ kotlin {
       implementation(libs.ktor.ios)
       implementation(libs.sqlDelight.native.driver)
     }
+    //this section is required for moko to work in iOSMain! hopefully will be fixed in the future
+    //MOKO in iOSMain
+    val androidMain by getting {
+      dependsOn(commonMain.get())
+    }
+    val iosMain by getting {
+      dependsOn(commonMain.get())
+    }
+    val iosArm64Main by getting {
+      dependsOn(iosMain)
+    }
+    val iosSimulatorArm64Main by getting {
+      dependsOn(iosMain)
+    }
+    val iosX64Main by getting {
+      dependsOn(iosMain)
+    }
+    //END OF MOKO in iOSMain
   }
 }
 
 multiplatformResources {
   multiplatformResourcesPackage = "com.ideabaker.kmm.translator.shared" // required
-  multiplatformResourcesClassName = "CMP" // optional, default MR
   multiplatformResourcesVisibility = MRVisibility.Internal // optional, default Public
   disableStaticFrameworkWarning = true // optional, default false
 }

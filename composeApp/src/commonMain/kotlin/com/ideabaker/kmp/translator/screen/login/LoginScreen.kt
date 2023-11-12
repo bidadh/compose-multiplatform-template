@@ -29,7 +29,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ideabaker.kmm.translator.shared.MR
 import com.ideabaker.kmp.translator.screen.Routes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun LoginScreen(
@@ -37,40 +39,23 @@ fun LoginScreen(
   onEvent: (LoginEvent) -> Unit,
   onNavigate: (Routes) -> Unit
 ) {
-/*
-  Box(modifier = Modifier.fillMaxSize()) {
-    ClickableText(
-      text = AnnotatedString("Sign up here"),
-      modifier = Modifier
-        .align(Alignment.BottomCenter)
-        .padding(20.dp),
-      onClick = { },
-      style = TextStyle(
-        fontSize = 14.sp,
-        fontFamily = FontFamily.Default,
-        textDecoration = TextDecoration.Underline,
-        color = MaterialTheme.colorScheme.secondary
-      )
-    )
-  }
-*/
   Column(
     modifier = Modifier.padding(20.dp),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
-    Text(text = "Login", style = TextStyle(fontSize = 40.sp))
+    Text(text = stringResource(MR.strings.login_title), style = TextStyle(fontSize = 40.sp))
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
-      label = { Text(text = "Username") },
+      label = { Text(text = stringResource(MR.strings.username)) },
       value = state.username,
       onValueChange = { onEvent(LoginEvent.UsernameChanged(it)) })
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
-      label = { Text(text = "Password") },
+      label = { Text(text = stringResource(MR.strings.password)) },
       value = state.password,
       visualTransformation = PasswordVisualTransformation(),
       keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -87,13 +72,13 @@ fun LoginScreen(
           .fillMaxWidth()
           .height(50.dp)
       ) {
-        Text(text = "Login")
+        Text(text = stringResource(MR.strings.login_button))
       }
     }
 
     Spacer(modifier = Modifier.height(20.dp))
     ClickableText(
-      text = AnnotatedString("Sign up here"),
+      text = AnnotatedString(stringResource(MR.strings.sign_up_link)),
       onClick = { onNavigate(Routes.Home) },
       style = TextStyle(
         fontSize = 14.sp,
@@ -104,9 +89,9 @@ fun LoginScreen(
     )
     if(state.error != null) {
       val message = if(state.error == LoginError.USERNAME_EMPTY) {
-        "Username is empty"
+        stringResource(MR.strings.username_error)
       } else {
-        "Password is empty"
+        stringResource(MR.strings.password_error)
       }
       Spacer(modifier = Modifier.height(20.dp))
       Text(
