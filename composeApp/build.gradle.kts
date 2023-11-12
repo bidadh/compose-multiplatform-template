@@ -97,7 +97,7 @@ android {
     implementation(libs.bundles.composeX)
 
     implementation(ktor.android)
-    implementation(libs.work.runtime.ktx)
+    implementation(ktx.workRuntime)
 
     implementation(koin.bundles.all)
   }
@@ -135,6 +135,7 @@ fun KotlinMultiplatformExtension.iosMainSourceSets() {
     }
   }
 }
+
 fun KotlinMultiplatformExtension.commonMainSourceSets() {
   sourceSets {
     commonMain {
@@ -162,6 +163,7 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
     }
   }
 }
+
 fun KotlinMultiplatformExtension.androidMainSourceSets() {
   sourceSets {
     val androidMain by getting {
@@ -173,12 +175,12 @@ fun KotlinMultiplatformExtension.androidMainSourceSets() {
         implementation(libs.bundles.composeX)
 
         implementation(ktor.android)
-        implementation(libs.work.runtime.ktx)
+        implementation(ktx.workRuntime)
 
         implementation(koin.bundles.all)
 
         api(libs.appcompat)
-        api(libs.core.ktx)
+        api(ktx.core)
         implementation(ktor.android)
         implementation(sqlDelight.android.driver)
       }

@@ -46,5 +46,8 @@ dependencyResolutionManagement {
     create("androidX") {
       from(files("gradle/android.versions.toml"))
     }
+    create("ktx") {
+      from(files("gradle/ktx.versions.toml"))
+    }
   }
 }

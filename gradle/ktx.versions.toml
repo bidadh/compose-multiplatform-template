@@ -1,0 +1,24 @@
+[versions]
+coreVersion = "1.12.0"
+workRuntimeVersion = "2.8.1"
+collectionVersion = "1.3.0"
+livedataVersion = "2.6.2"
+reactivestreamsVersion = "2.6.2"
+sqliteVersion = "2.4.0"
+viewmodelVersion = "2.6.2"
+
+[libraries]
+workRuntime = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeVersion" }
+core = { module = "androidx.core:core-ktx", version.ref = "coreVersion" }
+collection = { module = "androidx.collection:collection-ktx", version.ref = "collectionVersion" }
+livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "livedataVersion" }
+reactiveStreams = { module = "androidx.lifecycle:lifecycle-reactivestreams-ktx", version.ref = "reactivestreamsVersion" }
+sqlite = { module = "androidx.sqlite:sqlite-ktx", version.ref = "sqliteVersion" }
+viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewmodelVersion" }
+
+
+
+
+
+
+
