@@ -49,5 +49,8 @@ dependencyResolutionManagement {
     create("ktx") {
       from(files("gradle/ktx.versions.toml"))
     }
+    create("kotlinx") {
+      from(files("gradle/kotlinx.versions.toml"))
+    }
   }
 }

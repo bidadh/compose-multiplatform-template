@@ -38,7 +38,7 @@ val viewModelsModule = module {
 expect val platformModule: Module
 
 val httpModule = module {
-  single { HttpClientFactory().create() }
+  single { HttpClientFactory().create(getWith("HttpClient")) }
 }
 
 val databaseModule = module {

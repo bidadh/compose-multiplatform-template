@@ -151,6 +151,7 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
         implementation(compose.materialIconsExtended)
 
         implementation(ktor.bundles.all)
+        implementation(kotlinx.coroutines.core)
         implementation(sqlDelight.bundles.all)
         implementation(libs.kotlin.dateTime)
         api(moko.bundles.resources)
@@ -175,6 +176,7 @@ fun KotlinMultiplatformExtension.androidMainSourceSets() {
         implementation(libs.bundles.composeX)
 
         implementation(ktor.android)
+        implementation(kotlinx.coroutines.android)
         implementation(ktx.workRuntime)
 
         implementation(koin.bundles.all)
