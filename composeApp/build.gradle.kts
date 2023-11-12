@@ -1,6 +1,7 @@
 import dev.icerock.gradle.MRVisibility
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
@@ -35,70 +36,9 @@ kotlin {
   }
 
   sourceSets {
-
-    androidMain.dependencies {
-      implementation(libs.compose.ui)
-      implementation(libs.compose.ui.tooling.preview)
-      implementation(libs.activity.compose)
-
-      implementation(libs.bundles.composeX)
-
-      implementation(libs.ktor.android)
-      implementation(libs.work.runtime.ktx)
-
-      implementation(libs.bundles.koin)
-
-      api(libs.appcompat)
-      api(libs.core.ktx)
-      implementation(libs.ktor.android)
-      implementation(libs.sqlDelight.android.driver)
-    }
-    commonMain {
-      // this is required to make ksp classes / modules work in commonMain
-      kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-    }
-    commonMain.dependencies {
-      implementation(compose.runtime)
-      implementation(compose.foundation)
-      implementation(compose.material)
-      @OptIn(ExperimentalComposeLibrary::class)
-      implementation(compose.components.resources)
-
-      implementation(compose.material3)
-      implementation(compose.materialIconsExtended)
-
-      implementation(libs.bundles.ktor)
-      implementation(libs.bundles.sqlDelight)
-      implementation(libs.kotlin.dateTime)
-      api(moko.bundles.resources)
-
-      implementation(libs.kermit.logging)
-
-      api(libs.bundles.koinApi)
-      api(libs.bundles.precompose)
-    }
-    iosMain.dependencies {
-      implementation(libs.ktor.ios)
-      implementation(libs.sqlDelight.native.driver)
-    }
-    //this section is required for moko to work in iOSMain! hopefully will be fixed in the future
-    //MOKO in iOSMain
-    val androidMain by getting {
-      dependsOn(commonMain.get())
-    }
-    val iosMain by getting {
-      dependsOn(commonMain.get())
-    }
-    val iosArm64Main by getting {
-      dependsOn(iosMain)
-    }
-    val iosSimulatorArm64Main by getting {
-      dependsOn(iosMain)
-    }
-    val iosX64Main by getting {
-      dependsOn(iosMain)
-    }
-    //END OF MOKO in iOSMain
+    androidMainSourceSets()
+    commonMainSourceSets()
+    iosMainSourceSets()
   }
 }
 
@@ -177,3 +117,74 @@ sqldelight {
     }
   }
 }
+
+fun KotlinMultiplatformExtension.iosMainSourceSets() {
+  sourceSets {
+    val iosX64Main by getting
+    val iosArm64Main by getting
+    val iosSimulatorArm64Main by getting
+    val iosMain by creating {
+      dependsOn(commonMain.get())
+      iosX64Main.dependsOn(this)
+      iosArm64Main.dependsOn(this)
+      iosSimulatorArm64Main.dependsOn(this)
+      dependencies {
+        implementation(libs.ktor.ios)
+        implementation(libs.sqlDelight.native.driver)
+      }
+    }
+  }
+}
+fun KotlinMultiplatformExtension.commonMainSourceSets() {
+  sourceSets {
+    commonMain {
+      kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+
+      dependencies {
+        implementation(compose.runtime)
+        implementation(compose.foundation)
+        implementation(compose.material)
+        @OptIn(ExperimentalComposeLibrary::class)
+        implementation(compose.components.resources)
+
+        implementation(compose.material3)
+        implementation(compose.materialIconsExtended)
+
+        implementation(libs.bundles.ktor)
+        implementation(libs.bundles.sqlDelight)
+        implementation(libs.kotlin.dateTime)
+        api(moko.bundles.resources)
+
+        implementation(libs.kermit.logging)
+
+        api(libs.bundles.koinApi)
+        api(libs.bundles.precompose)
+      }
+    }
+  }
+}
+fun KotlinMultiplatformExtension.androidMainSourceSets() {
+  sourceSets {
+    val androidMain by getting {
+      dependsOn(commonMain.get())
+      dependencies {
+        implementation(libs.compose.ui)
+        implementation(libs.compose.ui.tooling.preview)
+        implementation(libs.activity.compose)
+
+        implementation(libs.bundles.composeX)
+
+        implementation(libs.ktor.android)
+        implementation(libs.work.runtime.ktx)
+
+        implementation(libs.bundles.koin)
+
+        api(libs.appcompat)
+        api(libs.core.ktx)
+        implementation(libs.ktor.android)
+        implementation(libs.sqlDelight.android.driver)
+      }
+    }
+  }
+}
+
