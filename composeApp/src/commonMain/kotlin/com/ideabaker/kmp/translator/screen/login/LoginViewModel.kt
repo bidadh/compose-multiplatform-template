@@ -54,17 +54,13 @@ class LoginViewModel(
       _uiState.update {
         it.copy(error = LoginError.USERNAME_EMPTY)
       }
-      return
     }
 
     if (state.password.isEmpty()) {
       _uiState.update {
         it.copy(error = LoginError.PASSWORD_EMPTY)
       }
-      return
     }
-
-
 
     log.i { "Logging in..." }
     loginJob = viewModelScope.launch {
@@ -75,7 +71,7 @@ class LoginViewModel(
         )
       }
 
-      delay(500)
+      delay(1000)
       _uiState.update {
         it.copy(isLoading = false)
       }
