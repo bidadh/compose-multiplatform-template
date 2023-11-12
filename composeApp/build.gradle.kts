@@ -92,7 +92,7 @@ android {
   }
   dependencies {
     kspCommonMainMetadata(koin.ksp.compiler)
-    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(compose.uiTooling)
 
     implementation(libs.bundles.composeX)
 
@@ -143,7 +143,6 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
       dependencies {
         implementation(compose.runtime)
         implementation(compose.foundation)
-        implementation(compose.material)
         @OptIn(ExperimentalComposeLibrary::class)
         implementation(compose.components.resources)
 
@@ -168,9 +167,8 @@ fun KotlinMultiplatformExtension.androidMainSourceSets() {
     val androidMain by getting {
       dependsOn(commonMain.get())
       dependencies {
-        implementation(libs.compose.ui)
-        implementation(libs.compose.ui.tooling.preview)
-        implementation(libs.activity.compose)
+        implementation(compose.ui)
+        implementation(compose.preview)
 
         implementation(libs.bundles.composeX)
 
