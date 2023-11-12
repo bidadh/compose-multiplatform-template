@@ -1,19 +1,18 @@
 package com.ideabaker.kmp.translator.translate.data.remote
 
-import co.touchlab.kermit.Logger
-import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.engine.android.Android
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.serialization.kotlinx.json.json
+import io.ktor.client.engine.android.AndroidEngineConfig
 
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual class HttpClientFactory actual constructor()  {
-  actual fun create(log: Logger): HttpClient {
-    return HttpClient(Android) {
-      install(ContentNegotiation) {
-        json()
-      }
-      installLogger(log)
-    }
+actual val engine: HttpClientEngineFactory<HttpClientEngineConfig>
+  get() = Android
+
+actual fun <T : HttpClientEngineConfig> HttpClientConfig<T>.configureEngin() {
+  engine {
+    val config = this as AndroidEngineConfig
+    config.connectTimeout = 100_000
+    config.threadsCount = 4
   }
 }

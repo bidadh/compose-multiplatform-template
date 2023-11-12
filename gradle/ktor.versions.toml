@@ -3,6 +3,7 @@ version = "2.3.4"
 
 [libraries]
 core = { module = "io.ktor:ktor-client-core", version.ref = "version" }
+auth = { module = "io.ktor:ktor-client-auth", version.ref = "version" }
 serialization = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "version" }
 serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "version" }
 android = { module = "io.ktor:ktor-client-android", version.ref = "version" }
@@ -13,6 +14,7 @@ logging = { module = "io.ktor:ktor-client-logging", version.ref = "version" }
 all = [
     "core",
     "logging",
+    "auth",
     "serialization",
     "serialization-json"
 ]
