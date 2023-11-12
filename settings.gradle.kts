@@ -28,5 +28,20 @@ dependencyResolutionManagement {
     create("moko") {
       from(files("gradle/moko.versions.toml"))
     }
+    create("ktor") {
+      from(files("gradle/ktor.versions.toml"))
+    }
+    create("sqlDelight") {
+      from(files("gradle/sqldelight.versions.toml"))
+    }
+    create("koin") {
+      from(files("gradle/koin.versions.toml"))
+    }
+    create("preCompose") {
+      from(files("gradle/precompose.versions.toml"))
+    }
+    create("kermit") {
+      from(files("gradle/kermit.versions.toml"))
+    }
   }
 }

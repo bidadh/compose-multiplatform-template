@@ -7,9 +7,9 @@ plugins {
   alias(libs.plugins.kotlinMultiplatform)
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsCompose)
-  alias(libs.plugins.sqldelight)
+  alias(sqlDelight.plugins.sqldelight)
   alias(libs.plugins.kotlinSerialization)
-  alias(libs.plugins.ksp)
+  alias(koin.plugins.ksp)
   alias(moko.plugins.resources)
 }
 
@@ -91,15 +91,15 @@ android {
     jvmToolchain(17)
   }
   dependencies {
-    kspCommonMainMetadata(libs.koin.ksp.compiler)
+    kspCommonMainMetadata(koin.ksp.compiler)
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(libs.bundles.composeX)
 
-    implementation(libs.ktor.android)
+    implementation(ktor.android)
     implementation(libs.work.runtime.ktx)
 
-    implementation(libs.bundles.koin)
+    implementation(koin.bundles.all)
   }
 }
 
@@ -129,8 +129,8 @@ fun KotlinMultiplatformExtension.iosMainSourceSets() {
       iosArm64Main.dependsOn(this)
       iosSimulatorArm64Main.dependsOn(this)
       dependencies {
-        implementation(libs.ktor.ios)
-        implementation(libs.sqlDelight.native.driver)
+        implementation(ktor.ios)
+        implementation(sqlDelight.native.driver)
       }
     }
   }
@@ -150,15 +150,15 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
         implementation(compose.material3)
         implementation(compose.materialIconsExtended)
 
-        implementation(libs.bundles.ktor)
-        implementation(libs.bundles.sqlDelight)
+        implementation(ktor.bundles.all)
+        implementation(sqlDelight.bundles.all)
         implementation(libs.kotlin.dateTime)
         api(moko.bundles.resources)
 
-        implementation(libs.kermit.logging)
+        implementation(kermit.logging)
 
-        api(libs.bundles.koinApi)
-        api(libs.bundles.precompose)
+        api(koin.bundles.allApi)
+        api(preCompose.bundles.all)
       }
     }
   }
@@ -174,15 +174,15 @@ fun KotlinMultiplatformExtension.androidMainSourceSets() {
 
         implementation(libs.bundles.composeX)
 
-        implementation(libs.ktor.android)
+        implementation(ktor.android)
         implementation(libs.work.runtime.ktx)
 
-        implementation(libs.bundles.koin)
+        implementation(koin.bundles.all)
 
         api(libs.appcompat)
         api(libs.core.ktx)
-        implementation(libs.ktor.android)
-        implementation(libs.sqlDelight.android.driver)
+        implementation(ktor.android)
+        implementation(sqlDelight.android.driver)
       }
     }
   }

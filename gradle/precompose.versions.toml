@@ -1,0 +1,14 @@
+[versions]
+version = "1.5.7"
+
+[libraries]
+core = { module = "moe.tlaster:precompose", version.ref = "version" }
+viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "version" }
+koin = { module = "moe.tlaster:precompose-koin", version.ref = "version" }
+
+[bundles]
+all = [
+    "core",
+    "viewmodel",
+    "koin"
+]
