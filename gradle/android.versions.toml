@@ -1,0 +1,9 @@
+[versions]
+minSdk = "24"
+compileSdk = "34"
+targetSdk = "34"
+pluginVersion = "8.2.0-rc03"
+
+[plugins]
+library = { id = "com.android.library", version.ref = "pluginVersion" }
+application = { id = "com.android.application", version.ref = "pluginVersion" }

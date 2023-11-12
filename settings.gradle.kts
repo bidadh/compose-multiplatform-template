@@ -43,5 +43,8 @@ dependencyResolutionManagement {
     create("kermit") {
       from(files("gradle/kermit.versions.toml"))
     }
+    create("androidX") {
+      from(files("gradle/android.versions.toml"))
+    }
   }
 }

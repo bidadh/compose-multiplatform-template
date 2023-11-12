@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
-  alias(libs.plugins.androidApplication)
+  alias(androidX.plugins.application)
   alias(libs.plugins.jetbrainsCompose)
   alias(sqlDelight.plugins.sqldelight)
   alias(libs.plugins.kotlinSerialization)
@@ -49,7 +49,7 @@ multiplatformResources {
 }
 
 android {
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
+  compileSdk = androidX.versions.compileSdk.get().toInt()
   namespace = "com.ideabaker.kmp.translator"
 
   sourceSets {
@@ -62,8 +62,8 @@ android {
 
   defaultConfig {
     applicationId = "com.ideabaker.kmp.translator.TranslatorApp"
-    minSdk = libs.versions.android.minSdk.get().toInt()
-    targetSdk = libs.versions.android.targetSdk.get().toInt()
+    minSdk = androidX.versions.minSdk.get().toInt()
+    targetSdk = androidX.versions.targetSdk.get().toInt()
     versionCode = 1
     versionName = "1.0"
   }
