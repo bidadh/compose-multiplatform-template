@@ -156,6 +156,7 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
         implementation(sqlDelight.bundles.all)
         implementation(libs.kotlin.dateTime)
         api(moko.bundles.resources)
+        implementation(moko.mvvm.flow)
 
         implementation(kermit.logging)
 
