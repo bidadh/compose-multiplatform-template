@@ -11,6 +11,7 @@ plugins {
   alias(libs.plugins.kotlinSerialization)
   alias(koin.plugins.ksp)
   alias(moko.plugins.resources)
+  appPropertiesPlugin()
 }
 
 kotlin {
@@ -43,14 +44,14 @@ kotlin {
 }
 
 multiplatformResources {
-  multiplatformResourcesPackage = "com.ideabaker.kmm.translator.shared" // required
+  multiplatformResourcesPackage = appProperties.resourcesSharedPackage // required
   multiplatformResourcesVisibility = MRVisibility.Internal // optional, default Public
   disableStaticFrameworkWarning = true // optional, default false
 }
 
 android {
   compileSdk = androidX.versions.compileSdk.get().toInt()
-  namespace = "com.ideabaker.kmp.translator"
+  namespace = appProperties.`package`
 
   sourceSets {
     named("main") {
@@ -61,11 +62,11 @@ android {
   }
 
   defaultConfig {
-    applicationId = "com.ideabaker.kmp.translator.TranslatorApp"
+    applicationId = appProperties.applicationId
     minSdk = androidX.versions.minSdk.get().toInt()
     targetSdk = androidX.versions.targetSdk.get().toInt()
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = appProperties.version.version
+    versionName = appProperties.version.name
   }
   buildFeatures {
     compose = true
@@ -111,8 +112,8 @@ tasks.withType<KotlinCompile<*>>().configureEach {
 
 sqldelight {
   databases {
-    create("TranslateDatabase") {
-      packageName.set("com.ideabaker.kmp.translator.database")
+    create(appProperties.dbName) {
+      packageName.set(appProperties.dbPackage)
       srcDirs.setFrom("src/commonMain/sqldelight")
     }
   }
