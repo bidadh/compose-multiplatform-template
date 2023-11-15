@@ -103,7 +103,7 @@ class HttpClientFactory(
       }
       install(responseTimePlugin)
       install(authHeaderPlugin) {
-        ignorePathList.add("/pos/v2/login")
+        ignorePathList.add("/login")
       }
     }
 
