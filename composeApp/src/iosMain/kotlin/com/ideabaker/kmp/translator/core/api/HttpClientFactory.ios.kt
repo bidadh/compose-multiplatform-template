@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.translate.data.remote
+package com.ideabaker.kmp.translator.core.api
 
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig

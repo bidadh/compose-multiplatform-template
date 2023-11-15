@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.translate.data.local
+package com.ideabaker.kmp.translator.core.db
 
 import android.content.Context
 import app.cash.sqldelight.db.SqlDriver
@@ -10,6 +10,6 @@ actual class DatabaseDriverFactory(
   private val context: Context
 ) {
   actual fun create(): SqlDriver {
-    return AndroidSqliteDriver(TranslateDatabase.Schema, context, "translate.db")
+    return AndroidSqliteDriver(TranslateDatabase.Schema, context, dbName)
   }
 }

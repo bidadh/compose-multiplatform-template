@@ -10,4 +10,8 @@ actual class PlatformService {
         " " + UIDevice.currentDevice.systemVersion +
         " " + UIDevice.currentDevice.batteryLevel
   }
+
+  actual fun deviceId(): String {
+    return UIDevice.currentDevice().identifierForVendor?.UUIDString() ?: ""
+  }
 }

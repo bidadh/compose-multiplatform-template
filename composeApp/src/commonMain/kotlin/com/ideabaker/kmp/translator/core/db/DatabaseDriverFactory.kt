@@ -1,4 +1,4 @@
-package com.ideabaker.kmp.translator.translate.data.local
+package com.ideabaker.kmp.translator.core.db
 
 import app.cash.sqldelight.db.SqlDriver
 
@@ -6,3 +6,5 @@ import app.cash.sqldelight.db.SqlDriver
 expect class DatabaseDriverFactory {
   fun create(): SqlDriver
 }
+
+internal const val dbName: String = "translate.db"

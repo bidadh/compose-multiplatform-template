@@ -159,6 +159,7 @@ fun KotlinMultiplatformExtension.commonMainSourceSets() {
         implementation(moko.mvvm.flow)
 
         implementation(kermit.logging)
+        implementation(storage.bundles.all)
 
         api(koin.bundles.allApi)
         api(preCompose.bundles.all)

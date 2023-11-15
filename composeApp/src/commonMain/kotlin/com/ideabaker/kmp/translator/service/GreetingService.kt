@@ -3,9 +3,9 @@ package com.ideabaker.kmp.translator.service
 import org.koin.core.annotation.Single
 
 @Single
-class GreetingService {
-  private val platformService: PlatformService = PlatformService()
-
+class GreetingService(
+  private val platformService: PlatformService
+) {
   fun greeting(): String {
     return platformService.platform()
   }

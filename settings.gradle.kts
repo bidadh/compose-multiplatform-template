@@ -52,5 +52,8 @@ dependencyResolutionManagement {
     create("kotlinx") {
       from(files("gradle/kotlinx.versions.toml"))
     }
+    create("storage") {
+      from(files("gradle/storage.versions.toml"))
+    }
   }
 }

@@ -1,12 +1,16 @@
 package com.ideabaker.kmp.translator
 
 import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
 import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
+import com.ideabaker.kmp.translator.config.NetworkConstants
+import com.ideabaker.kmp.translator.core.api.HttpClientFactory
+import com.ideabaker.kmp.translator.core.settings.LocalSettingsRepository
+import com.ideabaker.kmp.translator.core.token.TokenRepository
 import com.ideabaker.kmp.translator.database.TranslateDatabase
 import com.ideabaker.kmp.translator.screen.home.HomeViewModel
 import com.ideabaker.kmp.translator.screen.login.LoginViewModel
-import com.ideabaker.kmp.translator.translate.data.remote.HttpClientFactory
 import com.ideabaker.kmp.translator.translate.presentation.TranslateViewModel
 import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
@@ -29,6 +33,10 @@ fun customizeKoinApplication(customModule: Module): KoinAppDeclaration {
   return koinAppInitializer
 }
 
+val commonModule = module {
+  single { LocalSettingsRepository(get(), getWith("LocalSettingsRepository")) }
+}
+
 val viewModelsModule = module {
   factory { HomeViewModel(get()) }
   factory { LoginViewModel(getWith("LoginViewModel")) }
@@ -38,7 +46,17 @@ val viewModelsModule = module {
 expect val platformModule: Module
 
 val httpModule = module {
-  single { HttpClientFactory.create(getWith("HttpClient")) }
+  single { TokenRepository(getWith("TokenRepository")) }
+  single {
+    val factory = HttpClientFactory(
+      repo = get(),
+      clock = get(),
+      log = getWith("HttpClient"),
+      baseUrl = NetworkConstants.UAT.BASE_URL
+    )
+
+    factory.create()
+  }
 }
 
 val databaseModule = module {
@@ -56,8 +74,12 @@ val coreModule = module {
   // uses you *may* want to have a more robust configuration from the native platform. In KaMP Kit,
   // that would likely go into platformModule expect/actual.
   // See https://github.com/touchlab/Kermit
+  val config = StaticConfig(
+    logWriterList = listOf(platformLogWriter()),
+    minSeverity = Severity.Verbose
+  )
   val baseLogger =
-    Logger(config = StaticConfig(logWriterList = listOf(platformLogWriter())), "Translator")
+    Logger(config = config, "Translator")
   factory { (tag: String?) -> if (tag != null) baseLogger.withTag(tag) else baseLogger }
 }
 
@@ -77,6 +99,7 @@ fun appModule(module: Module) = listOf(
   platformModule,
   databaseModule,
   annotatedModule,
+  commonModule,
   viewModelsModule
 )
 

@@ -1,0 +1,10 @@
+[versions]
+version = "1.1.0"
+
+[libraries]
+core = { module = "com.russhwolf:multiplatform-settings", version.ref = "version" }
+serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "version" }
+coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "version" }
+
+[bundles]
+all = ["core", "serialization", "coroutines"]

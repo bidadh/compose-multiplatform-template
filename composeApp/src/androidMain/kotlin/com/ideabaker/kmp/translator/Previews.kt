@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ideabaker.kmm.translator.shared.MR
@@ -19,6 +20,7 @@ import com.ideabaker.kmp.translator.screen.login.LoginScreen
 import com.ideabaker.kmp.translator.screen.login.LoginState
 import com.ideabaker.kmp.translator.screen.pin.PinScreen
 import com.ideabaker.kmp.translator.service.GreetingService
+import com.ideabaker.kmp.translator.service.PlatformService
 import com.ideabaker.kmp.translator.translate.presentation.components.LanguageDropDownItem
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -71,7 +73,7 @@ fun LoginScreenPreview() {
 )
 @Composable
 fun HomeScreenPreview() {
-  HomeScreen(viewModel = HomeViewModel(GreetingService())) { }
+  HomeScreen(viewModel = HomeViewModel(GreetingService(PlatformService(LocalContext.current)))) { }
 }
 
 @Preview(
