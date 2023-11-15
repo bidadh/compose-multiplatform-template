@@ -6,6 +6,7 @@ import co.touchlab.kermit.StaticConfig
 import co.touchlab.kermit.platformLogWriter
 import com.ideabaker.kmp.translator.config.NetworkConstants
 import com.ideabaker.kmp.translator.core.api.HttpClientFactory
+import com.ideabaker.kmp.translator.core.api.KtorApiClient
 import com.ideabaker.kmp.translator.core.settings.LocalSettingsRepository
 import com.ideabaker.kmp.translator.core.token.TokenRepository
 import com.ideabaker.kmp.translator.database.TranslateDatabase
@@ -57,6 +58,7 @@ val httpModule = module {
 
     factory.create()
   }
+  single { KtorApiClient(get(), getWith("KtorApiClient")) }
 }
 
 val databaseModule = module {
